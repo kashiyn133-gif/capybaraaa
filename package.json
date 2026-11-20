@@ -5,7 +5,7 @@
   "description": "Capyplan living 3D companion, voice productivity and decision intelligence app",
   "scripts": {
     "start": "node server.js",
-    "check": "node --check app.js && node --check decision-engine.js && node --check server.js && node --check capy-motion.js && node --check voice-patterns.js && node --check guided.js"
+    "check": "node --check app.js && node --check decision-engine.js && node --check server.js && node --check capy-motion.js && node --check voice-patterns.js && node --check guided.js && node --check forest-world.js && node --check focus-rewards.js"
   },
   "engines": {
     "node": ">=18"
