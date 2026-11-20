@@ -2,7 +2,7 @@
 (()=>{
  const $=s=>document.querySelector(s),stage=$('#pond'),side=$('#capy-mascot'),hero=$('#hero-capy'),bubble=$('#mascot-bubble');
  if(!stage||!side)return;
- const frame=n=>`capy-frames/frame-${String(n).padStart(2,'0')}.png`;
+ const poseFiles={1:'capy-sit.png',2:'capy-dance.png',3:'capy-dance.png',4:'capy-wave.png',5:'capy-celebrate.png',6:'capy-think.png',7:'capy-jump.png',8:'capy-jump.png',9:'capy-yawn.png',10:'capy-dance.png',11:'capy-dance.png',12:'capy-dance.png',13:'capy-dance.png',14:'capy-thumbs.png',15:'capy-wave.png',16:'capy-surprise.png',17:'capy-celebrate.png',18:'capy-thumbs.png',19:'capy-dance.png',20:'capy-sit.png'};\n const frame=n=>`./${poseFiles[n]||'capy-wave.png'}`;
  const routines={
   idle:[1,20,1,20],wave:[4,15,4,15],dance:[2,3,10,11,13,14,19,20],boogie:[2,10,12,13,19,3],jump:[7,8,17,5],celebrate:[5,15,17,18,5],think:[1,6,20],curious:[3,16,4],sleep:[6,9,20],stretch:[18,13,2],spin:[10,11,12,13,10],clap:[14,5,14,5],focus:[1,6,20,1],shy:[6,14,6],surprise:[16,3,8],point:[16,15,16],victory:[5,7,17,18,15],rest:[6,9,20],walk:[2,10,11,12],groove:[2,3,13,19,10],heart:[14,5,18],replan:[1,6,16,3,1],outfit:[15,17,5], 'world-shift':[13,8,15],talk:[4,1,4], 'task-added':[4,5,7], 'planning':[1,6,16,3], 'world-shift':[13,8,15]
  };
