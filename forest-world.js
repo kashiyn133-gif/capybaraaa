@@ -4,11 +4,12 @@
   const scenes = [...document.querySelectorAll('.adventure-scene')];
   if (!scenes.length) return;
   const canvas = document.createElement('canvas');
+  const walker = document.createElement('img'); walker.src='capybara-3d.png'; walker.alt='Capybara walking through the forest'; walker.className='forest-capy-walker'; walker.loading='lazy';
   canvas.className = 'forest-three-canvas';
   canvas.setAttribute('aria-hidden', 'true');
   const attach = () => {
     const art = document.querySelector('.adventure-scene:not([hidden]) .scene-art');
-    if (art && canvas.parentNode !== art) art.append(canvas);
+    if (art) { if (canvas.parentNode !== art) art.append(canvas); if (walker.parentNode !== art) art.append(walker); }
   };
   attach();
   new MutationObserver(attach).observe(document.body, {attributes:true,subtree:true,attributeFilter:['hidden']});
@@ -43,6 +44,9 @@
     scene.add(dust);
     const leaves=[];
     for(let i=0;i<28;i++){const m=new THREE.Mesh(new THREE.PlaneGeometry(.16,.23),new THREE.MeshBasicMaterial({color:[0xb7a66b,0xd7bd75,0x78945b][i%3],side:THREE.DoubleSide,transparent:true,opacity:.8}));m.position.set((Math.random()-.5)*18,Math.random()*7-1,-Math.random()*10);scene.add(m);leaves.push(m)}
+    const butterflies=[];
+    const wingMat=new THREE.MeshBasicMaterial({color:0xf2d6a0,side:THREE.DoubleSide});
+    for(let i=0;i<7;i++){const b=new THREE.Group();for(const side of [-1,1]){const w=new THREE.Mesh(new THREE.CircleGeometry(.13,12),wingMat);w.scale.set(1.2,.7,1);w.position.x=side*.13;b.add(w)}b.position.set((Math.random()-.5)*12,Math.random()*3,-2-Math.random()*7);scene.add(b);butterflies.push({b,phase:Math.random()*6})}
     const birds=[];
     for(let i=0;i<4;i++){const b=new THREE.Group();const mat=new THREE.MeshBasicMaterial({color:0x263e35});for(const side of [-1,1]){const wing=new THREE.Mesh(new THREE.ConeGeometry(.08,.42,3),mat);wing.rotation.z=side*.9;wing.position.x=side*.18;b.add(wing)}b.position.set(-7+i*4,3+i*.4,-5);scene.add(b);birds.push(b)}
     let raf=0, last=0;
@@ -54,6 +58,7 @@
       particleGeo.attributes.position.needsUpdate=true;
       leaves.forEach((l,i)=>{l.position.y-=.006+(i%4)*.001;l.position.x+=Math.sin(s+i)*.002;l.rotation.z+=.004;if(l.position.y<-2){l.position.y=5+Math.random()*3;l.position.x=(Math.random()-.5)*18}});
       birds.forEach((b,i)=>{b.position.x=Math.sin(s*.22+i*2)*7;b.position.y=3+Math.sin(s*.8+i)*.6;b.rotation.z=Math.cos(s*.22+i*2)*.08});
+      butterflies.forEach(({b,phase},i)=>{b.position.x+=Math.sin(s+phase)*.004;b.position.y+=Math.sin(s*2+phase)*.008;b.rotation.y=Math.sin(s*5+phase)*.6;b.rotation.z=Math.cos(s*2+phase)*.18});
       camera.position.x=Math.sin(s*.12)*.22;camera.lookAt(0,1,-3);renderer.render(scene,camera);
     };
     const resize=()=>{renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()};
