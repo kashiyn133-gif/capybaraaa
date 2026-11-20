@@ -34,6 +34,7 @@
  const mapButton=document.createElement('button');mapButton.className='adventure-help';mapButton.id='cw-map-button';mapButton.textContent='Forest map ⌖';nav.parentNode.insertBefore(mapButton,nav.nextSibling);
  const openMap=()=>{document.body.classList.add('world-map-active');$('#cw-enter').hidden=true;window.scrollTo({top:0,behavior:'smooth'});say('Welcome back! Where shall we go next?');sync()};
  mapButton.addEventListener('click',openMap);
+ nav.addEventListener('click',e=>{if(e.target.closest('[data-scene]'))document.body.classList.remove('world-map-active')});
  document.querySelectorAll('.adventure-scene [data-back]').forEach(()=>{});
  $('#cw-quick-focus').addEventListener('click',()=>travel('focus','focus'));
  function sync(){const list=$('#list');$('#cw-task-count').textContent=list?.querySelectorAll('li:not(.done)').length||0;const pts=Number($('#reward-points')?.textContent||0);$('#cw-points').textContent=pts;const unlocked=$('#treasury-lock')?.textContent.toLowerCase().includes('unlocked');const chest=$('[data-place="treasury"]');if(unlocked){chest.classList.remove('locked');chest.classList.add('unlocked');chest.querySelector('.cw-lock').textContent='✓';$('#cw-chest-status').textContent='Capy has a surprise for you!'}else{$('#cw-chest-status').textContent='Locked until a session is eligible'} }
