@@ -1,5 +1,5 @@
 /* Playable Forest World — Capyplan's actual navigation layer */
-#capy-world{position:relative;min-height:min(780px,calc(100vh - 76px));margin:14px auto 28px;width:min(1440px,calc(100% - 28px));overflow:hidden;border-radius:34px;border:1px solid #d7e4d5;background:linear-gradient(180deg,#9bbdaf 0%,#d3dfc0 48%,#557b5c 100%);box-shadow:0 28px 90px #183b2b30;isolation:isolate}
+#capy-world{display:none;position:relative;min-height:min(780px,calc(100vh - 76px));margin:14px auto 28px;width:min(1440px,calc(100% - 28px));overflow:hidden;border-radius:34px;border:1px solid #d7e4d5;background:linear-gradient(180deg,#9bbdaf 0%,#d3dfc0 48%,#557b5c 100%);box-shadow:0 28px 90px #183b2b30;isolation:isolate}
 #capy-world[hidden]{display:none!important}
 #capy-world:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 12%,#fff5cf99,transparent 38%),linear-gradient(180deg,#f4f1d020,transparent 60%);pointer-events:none}
 .cw-hills{position:absolute;inset:auto -8% -12%;height:56%;background:linear-gradient(165deg,#75986b,#2e5b43 75%);border-radius:50% 50% 0 0/20% 20% 0 0;transform:rotate(-3deg);box-shadow:0 -32px 0 #8ca77a55}
